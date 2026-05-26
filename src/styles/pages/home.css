@@ -1,0 +1,73 @@
+
+/* ============================================
+   Todo App — contenedor principal
+   ============================================ */
+.todo-app {
+  padding: 32px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ============================================
+   Input + botón "Agregar"
+   ============================================ */
+.todo-input {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 28px;
+  width: 340px;
+}
+
+.todo-input input {
+  flex: 1;
+  padding: 10px 14px;
+  font-size: 15px;
+  border: 1.5px solid #d1d1d6;
+  border-radius: 10px;
+  outline: none;
+  background: #fafafa;
+  color: #1a1a2e;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.todo-input input:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+  background: #fff;
+}
+
+.todo-input input::placeholder {
+  color: #aaa;
+}
+
+.btn-add {
+  padding: 10px 18px;
+  font-size: 14px;
+  font-weight: 500;
+  background: #3b82f6;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s ease, transform 0.1s ease;
+}
+
+.btn-add:hover {
+  background: #2563eb;
+}
+
+.btn-add:active {
+  transform: scale(0.97);
+}
+
+/* ============================================
+   Lista de tareas
+   ============================================ */
+.todo-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}

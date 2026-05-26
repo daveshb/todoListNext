@@ -1,0 +1,153 @@
+/* ============================================
+   Variables de color por estado
+   ============================================ */
+:root {
+  /* Pendiente — gris neutro */
+  --pending-bg: #f5f5f7;
+  --pending-border: #d1d1d6;
+  --pending-badge-bg: #e5e5ea;
+  --pending-badge-color: #6b6b7a;
+
+  /* En progreso — azul */
+  --inprogress-bg: #eff6ff;
+  --inprogress-border: #93c5fd;
+  --inprogress-badge-bg: #dbeafe;
+  --inprogress-badge-color: #1d4ed8;
+
+  /* Completado — verde */
+  --done-bg: #f0fdf4;
+  --done-border: #86efac;
+  --done-badge-bg: #dcfce7;
+  --done-badge-color: #15803d;
+}
+
+/* ============================================
+   Card base — estado por defecto: Pendiente
+   ============================================ */
+.card2 {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 16px 20px;
+  width: 340px;
+  border-radius: 14px;
+  background: var(--pending-bg);
+  border: 1.5px solid var(--pending-border);
+  margin-bottom: 12px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
+  transition: box-shadow 0.2s ease, transform 0.15s ease;
+}
+
+.card2:hover {
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.10);
+  transform: translateY(-2px);
+}
+
+/* ============================================
+   Variante: En progreso (azul)
+   ============================================ */
+.card-ip {
+  background: var(--inprogress-bg);
+  border-color: var(--inprogress-border);
+}
+
+/* ============================================
+   Variante: Completado (verde)
+   ============================================ */
+.card-done {
+  background: var(--done-bg);
+  border-color: var(--done-border);
+}
+
+/* ============================================
+   Texto de la tarea
+   ============================================ */
+.card-description {
+  font-size: 15px;
+  font-weight: 500;
+  color: #1a1a2e;
+}
+
+/* ============================================
+   Badge / etiqueta de estado
+   ============================================ */
+.card-state-badge {
+  display: inline-block;
+  width: fit-content;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  background: var(--pending-badge-bg);
+  color: var(--pending-badge-color);
+}
+
+.card-ip .card-state-badge {
+  background: var(--inprogress-badge-bg);
+  color: var(--inprogress-badge-color);
+}
+
+.card-done .card-state-badge {
+  background: var(--done-badge-bg);
+  color: var(--done-badge-color);
+}
+
+/* ============================================
+   Temporizador
+   ============================================ */
+.card-timer {
+  font-size: 13px;
+  color: #888;
+  font-variant-numeric: tabular-nums;
+  min-height: 20px;
+}
+
+/* ============================================
+   Botones de acción dentro de la card
+   ============================================ */
+.card2 button {
+  align-self: flex-start;
+  padding: 7px 16px;
+  font-size: 13px;
+  font-weight: 500;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.1s ease;
+}
+
+.card2 button:active {
+  transform: scale(0.97);
+}
+
+/* Iniciar tarea — azul */
+.btn-start {
+  background: #3b82f6;
+  color: #fff;
+}
+
+.btn-start:hover {
+  background: #2563eb;
+}
+
+/* Finalizar tarea — ámbar */
+.btn-end {
+  background: #f59e0b;
+  color: #fff;
+}
+
+.btn-end:hover {
+  background: #d97706;
+}
+
+/* Eliminar — rojo */
+.btn-delete {
+  background: #ef4444;
+  color: #fff;
+}
+
+.btn-delete:hover {
+  background: #dc2626;
+}
