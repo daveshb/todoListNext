@@ -56,14 +56,12 @@ export default function Home() {
 
 
   
-  const fetchData = async ()=>{
-    const info = await getTodoList();
-    console.log(info.data)
-    setTodoList(info.data)
-  }
-
   useEffect(()=>{
-    // eslint-disable-next-line react-hooks/set-state-in-effect
+    const fetchData = async ()=>{
+      const info = await getTodoList();
+      console.log(info.data)
+      setTodoList(info.data)
+    }
     fetchData()
   },[])
 
