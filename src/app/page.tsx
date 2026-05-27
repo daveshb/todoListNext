@@ -1,7 +1,8 @@
 "use client";
 
 import { Card } from "@/components/Card";
-import { useState } from "react";
+import { getTodoList } from "@/services/todolist";
+import { useEffect, useState } from "react";
 
 interface todoListProps {
   id: string;
@@ -25,7 +26,7 @@ export default function Home() {
       state: "pending",
     };
 
-    setTodoList([...todoList, task]);
+    // setTodoList([...todoList, task]);
     setValor("");
   };
 
@@ -35,7 +36,7 @@ export default function Home() {
       taskFound.state = "inProgress";
       taskFound.startDate = Date.now();
     }
-    setTodoList([...todoList]);
+    // setTodoList([...todoList]);
   };
 
   const endTask = (id: string) => {
@@ -44,13 +45,29 @@ export default function Home() {
       taskFound.state = "done";
       taskFound.endDate = Date.now();
     }
-    setTodoList([...todoList]);
+    // setTodoList([...todoList]);
   };
 
   const deleteTask = (id: string) => {
     const newArray = todoList.filter((task) => task.id != id);
-    setTodoList([...newArray]);
+    // setTodoList([...newArray]);
   };
+
+
+
+  
+  const fetchData = async ()=>{
+    const info = await getTodoList();
+    console.log(info.data)
+    setTodoList(info.data)
+  }
+
+  useEffect(()=>{
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    fetchData()
+  },[])
+
+
 
   return (
     <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
