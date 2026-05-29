@@ -2,6 +2,7 @@
 
 import { Card } from "@/components/Card";
 import { getTodoList } from "@/services/todolist";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 interface todoListProps {
@@ -15,6 +16,8 @@ interface todoListProps {
 export default function Home() {
   const [valor, setValor] = useState("");
   const [todoList, setTodoList] = useState<todoListProps[]>([]);
+
+      const router = useRouter();
 
   const addTask = () => {
     if (valor.trim() == "") {
@@ -65,6 +68,9 @@ export default function Home() {
     fetchData()
   },[])
 
+const goToAdmin = ()=>{
+  router.push("/admin/users")
+}
 
 
   return (
@@ -82,6 +88,9 @@ export default function Home() {
           />
           <button className="btn-add" onClick={addTask}>
             Agregar
+          </button>
+          <button className="btn-add" onClick={goToAdmin}>
+            Ir a Admin
           </button>
         </div>
 

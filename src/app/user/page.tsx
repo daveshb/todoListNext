@@ -1,6 +1,7 @@
 "use client";
 
 import { getUser } from "@/services/users";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 interface personProps {
@@ -22,10 +23,16 @@ const User = () => {
     fetchData();
   }, []);
 
+  const router = useRouter()
+  const goToAdmin = ()=>{
+  router.push("/admin/users")
+}
+
   return (
     <>
       <h1>Vista users</h1>
       <div>La persona es: {person?.name}</div>
+      <button onClick={goToAdmin}> ir a admin</button>
 
       {/* {person && (
         <div>{person.name}</div>
