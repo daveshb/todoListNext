@@ -1,6 +1,7 @@
 "use client"
 
-import { useEffect, useState } from "react";
+import { ContextGlobal } from "@/context/Context";
+import { useContext, useEffect, useState } from "react";
 
 interface CardProps {
   description: string;
@@ -30,7 +31,8 @@ export const Card = ({
   handleDelete,
 }: CardProps) => {
   const [TimeInProgress, setTimeInProgress] = useState("");
-
+   const { isSelected } = useContext(ContextGlobal);
+  
   useEffect(() => {
     if (!startDate) {
       return;
@@ -66,7 +68,7 @@ useEffect(()=>{
 
   return (
     <div
-      className={`card2 ${state == "inProgress" ? "card-ip" : ""} ${state == "done" ? "card-done" : ""}`}
+      className={`card2 ${state == "inProgress" ? "card-ip" : ""} ${state == "done" ? "card-done" : ""} ${isSelected ? "amber" : ""}`}
     >
       <div className="card-description">{description}</div>
       <div className="card-state-badge">{stateLabel[state]}</div>

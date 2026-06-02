@@ -1,5 +1,6 @@
 "use client"
 
+import { DarkMode } from "@/components/DarkMode";
 import { useRouter } from "next/navigation";
 
 const AdminUsers = () => {
@@ -22,6 +23,7 @@ const AdminUsers = () => {
         <button className="btn-back mr-2.5" onClick={goBack} > Atras </button>
         <button className="btn-back" onClick={goHome}> I a home </button>
 
+        <DarkMode/>
     </div>
   );
 };

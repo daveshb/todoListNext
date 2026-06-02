@@ -1,6 +1,7 @@
 "use client";
 
 import { Card } from "@/components/Card";
+import { DarkMode } from "@/components/DarkMode";
 import { getTodoList } from "@/services/todolist";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -77,6 +78,8 @@ const goToAdmin = ()=>{
     <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
       <div className="todo-app">
         <h1>Todo list</h1>
+
+        <DarkMode/>
 
         <div className="todo-input">
           <input

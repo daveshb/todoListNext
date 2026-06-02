@@ -2,37 +2,18 @@
 
 import { createContext } from "react";
 
+type contextProps ={
+    name: string;
+    pi: number;
+    contador: number;
+    setContador: (contador:number)=>void;
+    isSelected: boolean;
+    setIsSelected: (isSelected:boolean)=>void;
+}
 
 
-export const ContextGlobal = createContext({})
-
-
-
-
-
-
-
-
-
-
-
+export const ContextGlobal = createContext<contextProps>({} as contextProps)
 
 
 
 
-
-
-
-// import { createContext } from "react";
-
-
-
-// export type contextProps = {
-  
-//     name: string;
-//     setName: (name: string) => void;
-
-// };
-
-
-// export const MyContext = createContext<contextProps>({} as contextProps);
