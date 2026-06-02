@@ -1,10 +1,17 @@
 "use client";
-import { Button } from "@heroui/react";
+import { Button, Chip } from "@heroui/react";
 import { useContador } from "./useContador";
 import { TrashBin } from "@gravity-ui/icons";
+import { useRouter } from "next/navigation";
+import { useContext } from "react";
+import { ContextGlobal } from '../../context/Context';
 
 const Contador = () => {
   const { contador, name, increment, decrement, reset } = useContador();
+
+  const router = useRouter()
+
+
 
   return (
     <>
@@ -16,6 +23,10 @@ const Contador = () => {
       <Button variant="danger" onPress={reset}> <TrashBin /> Reset</Button>
 
       <div>{name}</div>
+
+      <Button onPress={()=>{router.push('/user')}}>Ir User</Button>
+
+      
     </>
   );
 };

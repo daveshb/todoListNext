@@ -1,9 +1,13 @@
-import { useState } from "react";
+import { ContextGlobal } from "@/context/Context";
+import { useContext, useState } from "react";
 
 export const useContador = () => {
   const name = "guitarHero";
 
-  const [contador, setContador] = useState(0);
+  // const [contador, setContador] = useState(0);
+
+  const {contador, setContador} = useContext(ContextGlobal)
+
 
   const increment = () => {
     setContador(contador + 1);

@@ -1,8 +1,10 @@
 "use client";
 
+import { ContextGlobal } from "@/context/Context";
 import { getUser } from "@/services/users";
+import { Button, Chip } from "@heroui/react";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
 interface personProps {
   name: string;
@@ -12,6 +14,12 @@ interface personProps {
 
 const User = () => {
   const [person, setPerson] = useState<personProps>();
+
+const {name , pi} = useContext(ContextGlobal);
+
+
+
+
 
   const fetchData = async () => {
     const result = await getUser();
@@ -23,10 +31,14 @@ const User = () => {
     fetchData();
   }, []);
 
-  const router = useRouter()
-  const goToAdmin = ()=>{
-  router.push("/admin/users")
-}
+  const router = useRouter();
+  const goToAdmin = () => {
+    router.push("/admin/users");
+  };
+
+  const goToBack = () => {
+    router.back();
+  };
 
   return (
     <>
@@ -37,6 +49,15 @@ const User = () => {
       {/* {person && (
         <div>{person.name}</div>
       )} */}
+
+      <Button variant="danger" onPress={goToBack}>Ir Atras</Button>
+
+      <Chip>
+        {name}
+      </Chip>
+      <Chip>
+        {pi}
+      </Chip>
     </>
   );
 };
