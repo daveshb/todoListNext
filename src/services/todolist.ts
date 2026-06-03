@@ -8,3 +8,16 @@ export const getTodoList = async () => {
     console.error(err);
   }
 };
+
+
+
+export const getTodoListById = async (id:string) => {
+  try {
+    const res = await fetch(`/api/todolist/${id}`);
+    const data = res.json();
+
+    return data;
+  } catch (err) {
+    console.error(err);
+  }
+};

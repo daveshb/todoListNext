@@ -32,7 +32,7 @@ export default function RootLayout({
         <Provider>
           <body className="min-h-full flex flex-col">{children}</body>
         </Provider>
-        <footer>Esto es un footer y se ve en todas las vistas</footer>
+        {/* <footer>Esto es un footer y se ve en todas las vistas</footer> */}
       </html>
     </>
   );
