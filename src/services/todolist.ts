@@ -11,10 +11,10 @@ export const getTodoList = async () => {
 
 
 
-export const getTodoListById = async (id:string) => {
+export const getTodoListById = async (id: string) => {
   try {
     const res = await fetch(`/api/todolist/${id}`);
-    const data = res.json();
+    const data = await res.json();
 
     return data;
   } catch (err) {
