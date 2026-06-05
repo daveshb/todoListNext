@@ -11,8 +11,8 @@ export async function GET(
 
   const { dato } = await params;
 
-  const datos = await Todolist.find({ _id: dato });
-
+  // const datos = await Todolist.find({ _id: dato });
+  const datos = await Todolist.findById(dato)
   return Response.json({
     data: datos,
     code: 200,
