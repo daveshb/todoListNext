@@ -1,6 +1,7 @@
 "use client";
 
 import { ContextGlobal } from "@/context/Context";
+import { useTranslation } from "@/context/i18nContext";
 import { getUser } from "@/services/users";
 import { Button, Chip } from "@heroui/react";
 import { useRouter } from "next/navigation";
@@ -14,12 +15,8 @@ interface personProps {
 
 const User = () => {
   const [person, setPerson] = useState<personProps>();
-
-const {name , pi} = useContext(ContextGlobal);
-
-
-
-
+  const { name, pi } = useContext(ContextGlobal);
+  const { t } = useTranslation();
 
   const fetchData = async () => {
     const result = await getUser();
@@ -27,7 +24,6 @@ const {name , pi} = useContext(ContextGlobal);
   };
 
   useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
     fetchData();
   }, []);
 
@@ -44,11 +40,7 @@ const {name , pi} = useContext(ContextGlobal);
     <>
       <h1>Vista users</h1>
       <div>La persona es: {person?.name}</div>
-      <button onClick={goToAdmin}> ir a admin</button>
-
-      {/* {person && (
-        <div>{person.name}</div>
-      )} */}
+      <button onClick={goToAdmin}>{t.adminButton}</button>
 
       <Button variant="danger" onPress={goToBack}>Ir Atras</Button>
 
