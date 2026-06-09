@@ -19,9 +19,9 @@ interface todoListProps {
 export default function Home() {
   const { t } = useTranslation();
 
-  const {card} = t;
-  const {card} = t;
-  const {card} = t;
+  const { card } = t;
+  const { card } = t;
+  const { juanjo es un wey } = t;
 
 
   const [valor, setValor] = useState("");
@@ -29,7 +29,7 @@ export default function Home() {
 
 
 
-      const router = useRouter();
+  const router = useRouter();
 
   const addTask = async () => {
     if (valor.trim() == "") {
@@ -85,19 +85,19 @@ export default function Home() {
 
 
 
-  
-  useEffect(()=>{
-    const fetchData = async ()=>{
+
+  useEffect(() => {
+    const fetchData = async () => {
       const info = await getTodoList();
       console.log(info.data)
       setTodoList(info.data)
     }
     fetchData()
-  },[])
+  }, [])
 
-const goToAdmin = ()=>{
-  router.push("/admin/users")
-}
+  const goToAdmin = () => {
+    router.push("/admin/users")
+  }
 
 
   return (
@@ -106,11 +106,11 @@ const goToAdmin = ()=>{
         <h1>{t.title}</h1>
 
         <h2 className="text-black">{t.card.deleteButton}</h2>
-        <h2 className="text-black">{}</h2>
+        <h2 className="text-black">{ }</h2>
 
 
         <div className="flex gap-2 items-center mb-2">
-          <DarkMode/>
+          <DarkMode />
           <LanguageSelector />
         </div>
 
