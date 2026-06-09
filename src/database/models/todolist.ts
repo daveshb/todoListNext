@@ -1,6 +1,9 @@
 import { Schema, model, Model } from "mongoose";
 
 const todoLitSchema = new Schema({
+    id: {
+        type: String,
+    },
     title: {
         type: String,
         required: [true, "The title is required"],
@@ -10,12 +13,12 @@ const todoLitSchema = new Schema({
         required: [true, "The state is required"],
     },
     startDate: {
-        type: Date,
+        type: Schema.Types.Mixed,
     },
     endDate: {
-        type: Date,
+        type: Schema.Types.Mixed,
     }
-});
+}, { collection: "todos" });
 
 
 
@@ -23,10 +26,10 @@ const todoLitSchema = new Schema({
 let Todolist: Model<any>;
 try {
     // Intenta compilar el modelo solo una vez
-    Todolist = model("todolists");
+    Todolist = model("todos");
 } catch (error) {
     // Si el modelo ya está compilado, úsalo
-    Todolist = model("todolists", todoLitSchema);
+    Todolist = model("todos", todoLitSchema, "todos");
 }
 
 export default Todolist;

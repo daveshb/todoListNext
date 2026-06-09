@@ -24,13 +24,11 @@ export const I18nProvider = ({ children }: Props) => {
 
   const t = translations[language];
 
-  const saludar= () =>{
-    console.log("hola Team")
-  }
+
 
 
   return (
-    <I18nContext.Provider value={{ language, setLanguage, t, saludar }}>
+    <I18nContext.Provider value={{ language, setLanguage, t }}>
       {children}
     </I18nContext.Provider>
   );

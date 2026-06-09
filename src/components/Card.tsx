@@ -7,8 +7,8 @@ import { useContext, useEffect, useState } from "react";
 interface CardProps {
   description: string;
   state: "pending" | "inProgress" | "done";
-  startDate: number | undefined;
-  endDate: number | undefined;
+  startDate: number | string | undefined;
+  endDate: number | string | undefined;
   id: string;
   handleStart: (id: string) => void;
   handleEnd: (id: string) => void;
@@ -30,12 +30,13 @@ export const Card = ({
   const { isSelected } = useContext(ContextGlobal);
   
   useEffect(() => {
-    if (!startDate) {
+    const startTimestamp = startDate ? new Date(startDate).getTime() : undefined;
+    if (!startTimestamp) {
       return;
     }
 
     const interval = setInterval(() => {
-      const diffTime = Date.now() - startDate;
+      const diffTime = Date.now() - startTimestamp;
       const diffFormated = new Date(diffTime).toISOString();
       setTimeInProgress(diffFormated.slice(11, 19));
     }, 1000);
@@ -43,7 +44,9 @@ export const Card = ({
     return () => clearInterval(interval);
   }, [startDate]);
 
-  const totalTime = startDate && endDate && endDate - startDate;
+  const startTimestamp = startDate ? new Date(startDate).getTime() : undefined;
+  const endTimestamp = endDate ? new Date(endDate).getTime() : undefined;
+  const totalTime = startTimestamp && endTimestamp && endTimestamp - startTimestamp;
   const totalTimeFormated =
     totalTime && new Date(totalTime).toISOString().slice(11, 19);
 

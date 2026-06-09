@@ -4,14 +4,14 @@ import { useTranslation } from "@/context/i18nContext";
 import { Language } from "@/locales/translations";
 
 const languages: { value: Language; label: string }[] = [
-  { value: "es", label: "ESPANOL" },
+  { value: "es", label: "ESPAÑOL" },
   { value: "en", label: "ENGLISH" },
   { value: "pt", label: "PORTUGUES" },
 ];
 
 export const LanguageSelector = () => {
 
-
+  
   const { language, setLanguage } = useTranslation();
   // const { language, setLanguage } = useContext(I18nContext);
 
