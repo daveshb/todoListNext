@@ -29,7 +29,6 @@ export default function Home() {
   const [todoList, setTodoList] = useState<todoListProps[]>([]);
 
 
-  console.log(t)
 
       const router = useRouter();
 

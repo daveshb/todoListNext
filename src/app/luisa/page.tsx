@@ -11,7 +11,6 @@ const LuisaView = () => {
   const [elInput, setElInput] = useState("");
 
   const goToHome = (num: string) => {
-    console.log(num);
     router.push("/contador");
   };
 
@@ -34,7 +33,7 @@ const LuisaView = () => {
 
   return (
     <div>
-      <h1>Luisa Page</h1>
+      <h1>Thompson Page</h1>
 
 
     <input onChange={(e)=>{setElInput(e.target.value)}}/>

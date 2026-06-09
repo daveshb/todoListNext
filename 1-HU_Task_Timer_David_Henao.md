@@ -62,7 +62,6 @@ Cada tarea puede tener tres estados:
 - Debe mostrarse el tiempo total invertido en la tarea.
 - El tiempo debe permanecer guardado incluso al recargar la página.
 
----
 
 # Persistencia de datos
 
