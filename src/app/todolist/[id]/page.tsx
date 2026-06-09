@@ -1,73 +1,48 @@
+"use client";
+
 import { getTodoListById } from "@/services/todolist";
+import { useParams } from "next/navigation";
+import { useEffect, useState } from "react";
 
-const DetailsTodoList = async ({
-  params,
-}: {
-  params: Promise<{ id: string }>;
-}) => {
-  const { id } = await params;
 
-  const fetchData = async () => {
-    // const data = await getTodoListById(id);
-    // console.log(data);
+interface todoProps {
+  title: string;
+  state: string;
+  startDate?: string;
+  endDate?: string;
+}
 
-    try {
-    const res = await fetch(`/api/todolist/${id}`);
-    const data = res.json();
+const DetailsTodoList = () => {
 
-    return data;
-  } catch (err) {
-    console.error(err);
-  }
-  };
+  const [todo , setTodo] = useState<todoProps | null>(null)
 
-  fetchData();
+  const { id } = useParams();
 
-  console.log(id);
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await getTodoListById(id as string);
+      setTodo(res?.data)
+    };
+    fetchData();
+  }, [id]);
+
+
+
+
+
+  if (!todo) return <p>Cargando...</p>;
+
 
   return (
     <div>
       <h1>TodoList Details</h1>
-      <div> El id es : {id}</div>
-      
+      <p>ID: {id}</p>
+      <p>Title: {todo.title}</p>
+      <p>State: {todo.state}</p>
+      {todo.startDate && <p>Start: {todo.startDate}</p>}
+      {todo.endDate && <p>End: {todo.endDate}</p>}
     </div>
   );
 };
 
 export default DetailsTodoList;
-
-// "use client";
-
-// import { getTodoListById } from "@/services/todolist";
-// import { useEffect } from "react";
-
-// // eslint-disable-next-line @next/next/no-async-client-component
-// const DetailsTodoList = async ({
-//   params,
-// }: {
-//   params: Promise<{ id: string }>;
-// }) => {
-//   const { id } = await params;
-
-//   // eslint-disable-next-line react-hooks/rules-of-hooks
-//   useEffect(() => {
-
-//     const fetchData = async () => {
-//       const data = await getTodoListById(id);
-//       console.log(data)
-//     };
-
-//     fetchData();
-//   }, []);
-
-//   console.log(id);
-
-//   return (
-//     <div>
-//       <h1>TodoList Details</h1>
-//       <div> El id es : {id}</div>
-//     </div>
-//   );
-// };
-
-// export default DetailsTodoList;

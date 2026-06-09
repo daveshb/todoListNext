@@ -2,6 +2,8 @@
 
 import { Card } from "@/components/Card";
 import { DarkMode } from "@/components/DarkMode";
+import { LanguageSelector } from "@/components/LanguageSelector";
+import { useTranslation } from "@/context/i18nContext";
 import { getTodoList, createTodo, updateTodo, deleteTodo } from "@/services/todolist";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -15,8 +17,15 @@ interface todoListProps {
 }
 
 export default function Home() {
+  const { t } = useTranslation();
+
+  const {card} = t;
+
   const [valor, setValor] = useState("");
   const [todoList, setTodoList] = useState<todoListProps[]>([]);
+
+
+  console.log(t)
 
       const router = useRouter();
 
@@ -92,23 +101,30 @@ const goToAdmin = ()=>{
   return (
     <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
       <div className="todo-app">
-        <h1>Todo list</h1>
+        <h1>{t.title}</h1>
 
-        <DarkMode/>
+        <h2 className="text-black">{t.card.deleteButton}</h2>
+        <h2 className="text-black">{}</h2>
+
+
+        <div className="flex gap-2 items-center mb-2">
+          <DarkMode/>
+          <LanguageSelector />
+        </div>
 
         <div className="todo-input">
           <input
-            placeholder="Nueva tarea..."
+            placeholder={t.placeholder}
             onChange={(e) => {
               setValor(e.target.value);
             }}
             value={valor}
           />
           <button className="btn-add" onClick={addTask}>
-            Agregar
+            {t.addButton}
           </button>
           <button className="btn-add" onClick={goToAdmin}>
-            Ir a Admin
+            {t.adminButton}
           </button>
         </div>
 

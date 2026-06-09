@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Provider } from "@/context/Provider";
+import { I18nProvider } from "@/context/i18nContext";
+
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,9 +31,11 @@ export default function RootLayout({
         lang="en"
         className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
       >
-        <Provider>
-          <body className="min-h-full flex flex-col">{children}</body>
-        </Provider>
+        <I18nProvider>
+          <Provider>
+            <body className="min-h-full flex flex-col">{children}</body>
+          </Provider>
+        </I18nProvider>
         {/* <footer>Esto es un footer y se ve en todas las vistas</footer> */}
       </html>
     </>

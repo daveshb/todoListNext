@@ -13,8 +13,7 @@ export async function GET(
   const isObjectId = dato.length === 24 && /^[0-9a-fA-F]{24}$/.test(dato);
   const query = isObjectId ? { _id: dato } : { id: dato };
 
-  const datos = await Todolist.find(query);
-
+  const datos = await Todolist.findOne(query);
   return Response.json({
     data: datos,
     code: 200,
