@@ -2,15 +2,15 @@
 
 import { Card } from "@/components/Card";
 import { DarkMode } from "@/components/DarkMode";
-import { getTodoList } from "@/services/todolist";
+import { getTodoList, createTodo, updateTodo, deleteTodo } from "@/services/todolist";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 interface todoListProps {
   id: string;
   title: string;
-  startDate?: number | undefined;
-  endDate?: number | undefined;
+  startDate?: number | string | undefined;
+  endDate?: number | string | undefined;
   state: "pending" | "inProgress" | "done";
 }
 
@@ -20,7 +20,7 @@ export default function Home() {
 
       const router = useRouter();
 
-  const addTask = () => {
+  const addTask = async () => {
     if (valor.trim() == "") {
       return;
     }
@@ -30,31 +30,46 @@ export default function Home() {
       state: "pending",
     };
 
-    // setTodoList([...todoList, task]);
+    const response = await createTodo(task);
+    if (response && response.data) {
+      setTodoList([...todoList, response.data]);
+    }
     setValor("");
   };
 
-  const startTask = (id: string) => {
+  const startTask = async (id: string) => {
     const taskFound = todoList.find((task) => task.id == id);
     if (taskFound) {
-      taskFound.state = "inProgress";
-      taskFound.startDate = Date.now();
+      const updates = {
+        state: "inProgress",
+        startDate: Date.now()
+      };
+      const response = await updateTodo(id, updates);
+      if (response && response.data) {
+        setTodoList(todoList.map(t => t.id === id ? { ...t, ...updates } : t));
+      }
     }
-    // setTodoList([...todoList]);
   };
 
-  const endTask = (id: string) => {
+  const endTask = async (id: string) => {
     const taskFound = todoList.find((task) => task.id == id);
     if (taskFound) {
-      taskFound.state = "done";
-      taskFound.endDate = Date.now();
+      const updates = {
+        state: "done",
+        endDate: Date.now()
+      };
+      const response = await updateTodo(id, updates);
+      if (response && response.data) {
+        setTodoList(todoList.map(t => t.id === id ? { ...t, ...updates } : t));
+      }
     }
-    // setTodoList([...todoList]);
   };
 
-  const deleteTask = (id: string) => {
-    const newArray = todoList.filter((task) => task.id != id);
-    // setTodoList([...newArray]);
+  const deleteTask = async (id: string) => {
+    const response = await deleteTodo(id);
+    if (response && response.code === 200) {
+      setTodoList(todoList.filter((task) => task.id != id));
+    }
   };
 
 
