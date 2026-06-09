@@ -1,6 +1,7 @@
 "use client"
 
 import { ContextGlobal } from "@/context/Context";
+import { useTranslation } from "@/context/i18nContext";
 import { useContext, useEffect, useState } from "react";
 
 interface CardProps {
@@ -14,12 +15,6 @@ interface CardProps {
   handleDelete: (id: string) => void;
 }
 
-const stateLabel = {
-  pending: "Pendiente",
-  inProgress: "En progreso",
-  done: "Completado",
-};
-
 export const Card = ({
   description,
   state,
@@ -30,8 +25,9 @@ export const Card = ({
   handleEnd,
   handleDelete,
 }: CardProps) => {
+  const { t } = useTranslation();
   const [TimeInProgress, setTimeInProgress] = useState("");
-   const { isSelected } = useContext(ContextGlobal);
+  const { isSelected } = useContext(ContextGlobal);
   
   useEffect(() => {
     if (!startDate) {
@@ -64,6 +60,8 @@ useEffect(()=>{
 
 
 
+console.log(state);
+console.log(t.card[state]);
 
 
   return (
@@ -71,11 +69,11 @@ useEffect(()=>{
       className={`card2 ${state == "inProgress" ? "card-ip" : ""} ${state == "done" ? "card-done" : ""} ${isSelected ? "amber" : ""}`}
     >
       <div className="card-description">{description}</div>
-      <div className="card-state-badge">{stateLabel[state]}</div>
+      <div className="card-state-badge">{t.card[state]}</div>
       <div className="card-timer">
-        {state == "pending" && "Tarea sin iniciar"}
-        {TimeInProgress && state == "inProgress" && `Tiempo: ${TimeInProgress}`}
-        {state == "done" && `Tiempo: ${totalTimeFormated}`}
+        {state == "pending" && t.card.notStarted}
+        {TimeInProgress && state == "inProgress" && `${t.card.time}: ${TimeInProgress}`}
+        {state == "done" && `${t.card.time}: ${totalTimeFormated}`}
       </div>
 
       {state == "pending" && (
@@ -85,7 +83,7 @@ useEffect(()=>{
             handleStart(id);
           }}
         >
-          Iniciar tarea
+          {t.card.startButton}
         </button>
       )}
 
@@ -96,7 +94,7 @@ useEffect(()=>{
             handleEnd(id);
           }}
         >
-          Finalizar tarea
+          {t.card.endButton}
         </button>
       )}
 
@@ -107,7 +105,7 @@ useEffect(()=>{
             handleDelete(id);
           }}
         >
-          Eliminar
+          {t.card.deleteButton}
         </button>
       )}
     </div>

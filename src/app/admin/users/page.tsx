@@ -1,9 +1,15 @@
 "use client"
 
 import { DarkMode } from "@/components/DarkMode";
+import { LanguageSelector } from "@/components/LanguageSelector";
+import { useTranslation } from "@/context/i18nContext";
 import { useRouter } from "next/navigation";
 
 const AdminUsers = () => {
+
+
+  const {t} = useTranslation();
+
 
     const router = useRouter();
 
@@ -16,7 +22,7 @@ const AdminUsers = () => {
 
   return (
     <div>
-      <h1>Administración de ususarios</h1>
+      <h1>{t.adminTitle}</h1>
 
       <div>Aqui va la tabla</div>
 
@@ -24,6 +30,7 @@ const AdminUsers = () => {
         <button className="btn-back" onClick={goHome}> I a home </button>
 
         <DarkMode/>
+        <LanguageSelector/>
     </div>
   );
 };
