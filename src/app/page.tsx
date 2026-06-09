@@ -20,6 +20,9 @@ export default function Home() {
   const { t } = useTranslation();
 
   const {card} = t;
+  console.log(card)
+  console.log(card)
+  console.log(card)
 
   const [valor, setValor] = useState("");
   const [todoList, setTodoList] = useState<todoListProps[]>([]);
