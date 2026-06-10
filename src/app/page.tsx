@@ -19,9 +19,12 @@ interface todoListProps {
 export default function Home() {
   const { t } = useTranslation();
 
-  const { card } = t;
-  const { card } = t;
-  const { juanjo es un wey } = t;
+  const {card} = t;
+  console.log(card)
+  console.log(card)
+
+
+
 
 
   const [valor, setValor] = useState("");
