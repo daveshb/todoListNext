@@ -1,6 +1,5 @@
 import { NextRequest } from "next/server"
-
-
+import { uploadToCloudinary } from "../../helpers/uploadImg";
 
 
 export async function POST( request: NextRequest){
@@ -8,17 +7,20 @@ export async function POST( request: NextRequest){
     // const {title, description, img} = await request.json()
 
     const formData = await request.formData();
-
     const title = formData.get('title') as string;
     const description = formData.get('description') as string;
     const img = formData.get('img') as File | null;
 
+    if (!img) return Response.json({ code: 400, error: 'No image provided' }, { status: 400 });
 
-    console.log(title)
-    console.log(description)
-    console.log(img)
+    const imgBuffer = Buffer.from(await img.arrayBuffer());
 
 
+    // enviar a cloudinary
+    const respCloudinary = await uploadToCloudinary(imgBuffer, title);
+    console.log(respCloudinary)
+
+    
 
     return Response.json({
         code: 200,
@@ -28,19 +30,3 @@ export async function POST( request: NextRequest){
         }
     })
 }
-
-
-
-
-// export async function POST(){
-//   const data = "Maribel"
-
-//   console.log("se llamo la función POST")
-
-//   return Response.json({
-//     name : data,
-//     code: 200,
-//     message: "el servicio contesto como POST",
-//   })
-
-// }

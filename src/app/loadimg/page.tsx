@@ -22,8 +22,8 @@ const LoadImg = () => {
         console.log("el archivo",file)
 
         try{
-            const resp = await postImg(title, description, file )
-            console.log(resp)
+                const resp = await postImg({title, description, file})
+                console.log(resp)
 
         } catch (err){
             console.error(err)
@@ -58,21 +58,6 @@ const LoadImg = () => {
                             className="bg-white/10 border border-white/15 rounded-lg px-4 py-2.5 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition resize-none"
                         />
                     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
                     <div className="flex flex-col gap-1.5">
                         <label className="text-slate-300 text-sm font-medium">Imagen</label>

@@ -1,6 +1,12 @@
 import axios from "axios";
 
-export const postImg = async (title, description, file) => {
+export interface imgProps{
+  title: string;
+  description: string;
+  img: File | null;
+}
+
+export const postImg = async ({ title, description, img }: imgProps) => {
   try {
     // const res = await axios.post("/api/img",{
     //     title,
@@ -14,9 +20,11 @@ export const postImg = async (title, description, file) => {
 
     formData.append("title", title);
     formData.append("description", description);
-    formData.append("img", file);
+    if (img) {
+      formData.append("img", img);
+    }
 
-    const res = await axios.post("/api/img",  formData );
+    const res = await axios.post("/api/img",  formData);
 
     return res;
   } catch (err) {
