@@ -1,6 +1,9 @@
 import { Schema, model, Model } from "mongoose";
 
 const todoLitSchema = new Schema({
+    id: {
+        type: String,
+    },
     title: {
         type: String,
         required: [true, "The title is required"],
@@ -10,12 +13,12 @@ const todoLitSchema = new Schema({
         required: [true, "The state is required"],
     },
     startDate: {
-        type: Date,
+        type: Schema.Types.Mixed,
     },
     endDate: {
-        type: Date,
+        type: Schema.Types.Mixed,
     }
-});
+}, { collection: "todolists" });
 
 
 
@@ -26,7 +29,7 @@ try {
     Todolist = model("todolists");
 } catch (error) {
     // Si el modelo ya está compilado, úsalo
-    Todolist = model("todolists", todoLitSchema);
+    Todolist = model("todolists", todoLitSchema, "todolists");
 }
 
 export default Todolist;

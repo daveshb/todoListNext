@@ -1,9 +1,26 @@
+import axios from "axios";
 
 export const getUser = async () => {
   const res = await fetch("/api/hello");
   const data = res.json();
 
   return data;
+};
+
+export const login = async (user:string, pass:string) => {
+  try{
+
+    const res = await axios.post("api/login",{
+      user,
+      pass
+    })
+   
+    return res.data
+  }
+  catch (err){
+    console.error(err)
+  }
+
 };
 
 
