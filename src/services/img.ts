@@ -6,7 +6,7 @@ export interface imgProps{
   img: File | null;
 }
 
-export const postImg = async ({ title, description, img }: imgProps) => {
+export const postImg = async ( title, description, img ) => {
   try {
     // const res = await axios.post("/api/img",{
     //     title,
@@ -20,9 +20,7 @@ export const postImg = async ({ title, description, img }: imgProps) => {
 
     formData.append("title", title);
     formData.append("description", description);
-    if (img) {
       formData.append("img", img);
-    }
 
     const res = await axios.post("/api/img",  formData);
 

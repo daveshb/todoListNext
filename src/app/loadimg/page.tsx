@@ -22,7 +22,7 @@ const LoadImg = () => {
         console.log("el archivo",file)
 
         try{
-                const resp = await postImg({title, description, file})
+                const resp = await postImg(title, description, file)
                 console.log(resp)
 
         } catch (err){

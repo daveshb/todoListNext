@@ -1,5 +1,7 @@
 import { NextRequest } from "next/server"
 import { uploadToCloudinary } from "../../helpers/uploadImg";
+import Files from "@/database/models/files";
+import conectionDB from "@/lib/database";
 
 
 export async function POST( request: NextRequest){
@@ -18,15 +20,26 @@ export async function POST( request: NextRequest){
 
     // enviar a cloudinary
     const respCloudinary = await uploadToCloudinary(imgBuffer, title);
-    console.log(respCloudinary)
+    
+    conectionDB()
+    // Guardar en DB
+
+    const newFile = new Files({
+        title,
+        description,
+        fileUrl: respCloudinary
+    })
+
+    await newFile.save()
 
     
 
     return Response.json({
         code: 200,
         data:{
-            name:" vea que si responde",
-            title: title
+            name:" se guardo la img",
+            title: title,
+
         }
     })
 }
