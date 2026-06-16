@@ -9,7 +9,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 interface todoListProps {
-  id: string;
+  _id: string;
   title: string;
   startDate?: number | string | undefined;
   endDate?: number | string | undefined;
@@ -136,13 +136,13 @@ export default function Home() {
         <div className="todo-list">
           {todoList.map((task) => {
             return (
-              <div key={task.id}>
+              <div key={task._id}>
                 <Card
                   description={task.title}
                   state={task.state}
                   startDate={task.startDate}
                   endDate={task.endDate}
-                  id={task.id}
+                  id={task._id}
                   handleStart={startTask}
                   handleEnd={endTask}
                   handleDelete={deleteTask}

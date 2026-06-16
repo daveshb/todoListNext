@@ -18,7 +18,7 @@ const todoLitSchema = new Schema({
     endDate: {
         type: Schema.Types.Mixed,
     }
-}, { collection: "todos" });
+}, { collection: "todolists" });
 
 
 
@@ -26,10 +26,10 @@ const todoLitSchema = new Schema({
 let Todolist: Model<any>;
 try {
     // Intenta compilar el modelo solo una vez
-    Todolist = model("todos");
+    Todolist = model("todolists");
 } catch (error) {
     // Si el modelo ya está compilado, úsalo
-    Todolist = model("todos", todoLitSchema, "todos");
+    Todolist = model("todolists", todoLitSchema, "todolists");
 }
 
 export default Todolist;
