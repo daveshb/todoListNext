@@ -24,8 +24,23 @@ export const postImg = async ( title, description, img ) => {
 
     const res = await axios.post("/api/img",  formData);
 
+    console.log()
+
     return res;
   } catch (err) {
     console.error(err);
   }
 };
+
+
+
+const fetchFiles = async ()=>{
+
+  const resp = await axios.get("/api/img");
+
+  console.log(resp);
+
+  return resp.data
+
+
+}
