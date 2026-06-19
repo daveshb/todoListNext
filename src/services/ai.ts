@@ -7,7 +7,7 @@ export const generarBorradorBlog = async (titulo: string): Promise<string> => {
   //   body: JSON.stringify({ titulo }),
   // });
 
-  const res = await axios.post("/api/ai/blog-draft",{titulo})
+  const res = await axios.post("/api/ai/blog-draft-g",{titulo})
 
   if (res.status != 200 ) {
     throw new Error("Error al conectar con la IA");
